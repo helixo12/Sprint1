@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Demo_TheTravelingSalesperson
 {
-    class Controller
+    public class Controller
     {
        private ConsoleView _consoleView;
        private Salesperson _salesperson;
@@ -58,11 +58,26 @@ namespace Demo_TheTravelingSalesperson
                     case MenuOption.Travel:
                         Travel();
                         break;
+                    case MenuOption.Buy:
+                        Buy();
+                        break;
+                    case MenuOption.Sell:
+                        Sell();
+                        break;
+                    case MenuOption.DisplayInventory:
+                        DisplayInventory();
+                        break;
                     case MenuOption.DisplayCities:
                         DisplayCities();
                         break;
                     case MenuOption.DisplayAccountInfo:
                         DisplayAccountInfo();
+                        break;
+                    case MenuOption.SaveAccountInfo:
+                        SaveAccountInfo();
+                        break;
+                    case MenuOption.LoadAccountInfo:
+                        LoadAccountInfo();
                         break;
                     case MenuOption.Exit:
                         _usingApplication = false;
@@ -78,10 +93,48 @@ namespace Demo_TheTravelingSalesperson
 
         }
 
+        ///
+        /// Buy products
+        /// 
+        private void Buy()
+        {
+            int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToBuy(_salesperson.CurrentStock);
+            _salesperson.CurrentStock.AddProducts(numberOfUnits);
+        }
+
+        /// <summary>
+        /// Sell Products
+        /// </summary>
+        private void Sell()
+        {
+            int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToSell(_salesperson.CurrentStock);
+            _salesperson.CurrentStock.SubtractProducts(numberOfUnits);
+
+            if (_salesperson.CurrentStock.OnBackOrder)
+            {
+                _consoleView.DisplayBackorderNotification(_salesperson.CurrentStock, numberOfUnits);
+            }
+        }
+
+        private void DisplayInventory()
+        {
+            _consoleView.DisplayInventory(_salesperson.CurrentStock);
+        }
+
         public void Travel()
         {
             string nextCity = _consoleView.DisplayGetNextCity();
             _salesperson.CitiesVisited.Add(nextCity);
+        }
+
+        private void SaveAccountInfo()
+        {
+
+        }
+
+        private void LoadAccountInfo()
+        {
+
         }
     }
 }

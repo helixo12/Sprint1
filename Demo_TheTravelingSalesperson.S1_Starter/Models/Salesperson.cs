@@ -6,24 +6,19 @@ using System.Threading.Tasks;
 
 namespace Demo_TheTravelingSalesperson
 {
-    class Salesperson
+    public class Salesperson
     {
-        private string _accountID;
-        private List <string> _citiesVisited;
+        #region FIELDS
+
         private string _firstName;
         private string _lastName;
+        private string _accountID;
+        private List<string> _citiesVisited;
+        private Product _currentStock;
 
-        public string AccountID
-        {
-            get { return _accountID; }
-            set { _accountID = value; }
-        }
+        #endregion
 
-        public List <string> CitiesVisited
-        {
-            get { return _citiesVisited; }
-            set { _citiesVisited = value; }
-        }
+        #region PROPERTIES
 
         public string FirstName
         {
@@ -37,9 +32,31 @@ namespace Demo_TheTravelingSalesperson
             set { _lastName = value; }
         }
 
+        public string AccountID
+        {
+            get { return _accountID; }
+            set { _accountID = value; }
+        }
+
+        public List<string> CitiesVisited
+        {
+            get { return _citiesVisited; }
+            set { _citiesVisited = value; }
+        }
+
+        public Product CurrentStock
+        {
+            get { return _currentStock; }
+            set { _currentStock = value; }
+        }
+        #endregion
+
+        #region CONSTRUCTORS
+
         public Salesperson()
         {
             _citiesVisited = new List<string>();
+            _currentStock = new Product();
         }
 
         public Salesperson(string firstName, string lastName, string acountID)
@@ -49,7 +66,14 @@ namespace Demo_TheTravelingSalesperson
             _accountID = acountID;
 
             _citiesVisited = new List<string>();
+            _currentStock = new Product();
         }
+
+        #endregion
+
+        #region METHODS
+
+        #endregion
 
 
     }

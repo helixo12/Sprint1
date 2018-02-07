@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace Demo_TheTravelingSalesperson
 {
-    enum MenuOption
+    public enum MenuOption
     {
         None,
         Travel,
+        Buy,
+        Sell,
+        DisplayInventory,
         DisplayCities,
         DisplayAccountInfo,
+        SaveAccountInfo,
+        LoadAccountInfo,
         Exit
     }
 }
